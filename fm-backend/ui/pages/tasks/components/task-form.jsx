@@ -6,9 +6,9 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-} from '@chakra-ui/react';
-import React from 'react';
-import { useTaskForm } from '../hooks/use-task-form';
+} from "@chakra-ui/react";
+import React from "react";
+import { useTaskForm } from "../hooks/use-task-form";
 
 export function TaskForm() {
   const {
@@ -22,15 +22,15 @@ export function TaskForm() {
     <Box>
       <form onSubmit={handleSubmit(saveTask)}>
         <InputGroup size="md">
-          <FormControl isInvalid={!!errors.description}>
+          <FormControl isInvalid={!!errors.text}>
             <Input
               h="2.6rem"
               pr="6rem"
-              id="description"
-              {...register('description')}
+              id="text"
+              {...register("text")}
               placeholder="Type to add new tasks"
             />
-            <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+            <FormErrorMessage>{errors.text?.message}</FormErrorMessage>
           </FormControl>
           <InputRightElement width="6rem">
             <Button

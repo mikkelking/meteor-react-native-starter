@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "todo",
   "version": "1.0.0",
   "main": "index.js",
   "description": "React Native App using Meteor backend",
