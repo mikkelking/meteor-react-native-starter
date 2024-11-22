@@ -9,13 +9,14 @@
     "test": "TEST_SERVER=1 TEST_CLIENT=0 meteor test --once --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519",
     "test:watch": "TEST_SERVER=1 TEST_CLIENT=0 meteor test --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519",
     "test:coverage": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD TEST_SERVER=1 TEST_CLIENT=0 meteor test --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519",
-        "visualize": "meteor --production --extra-packages bundle-visualizer"
-
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
+    "@ark-ui/react": "^4.4.4",
     "@babel/runtime": "^7.24.8",
-    "@chakra-ui/icons": "^2.1.1",
-    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/react": "^3.2.0",
+    "@chakra-ui/utils": "^2.2.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^2.9.11",
@@ -29,25 +30,25 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.25.1",
-    "zod": "^3.23.8",
     "simpl-schema": "^3.4.1",
-    "snazzy": "^9.0.0"
+    "snazzy": "^9.0.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/eslint-parser": "^7.23.3",
-    "babel-plugin-istanbul": "^6.1.1",
     "@biomejs/biome": "1.8.3",
     "@types/meteor": "^2.9.8",
     "@types/mocha": "^9.1.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "chai": "^4.4.1",
+    "babel-plugin-istanbul": "^6.1.1",
+    "chai": "^4.5.0",
     "jsdoc": "^4.0.2",
     "sinon": "^15.2.0",
     "standardx": "^7.0.0"
   },
-    "meteor": {
+  "meteor": {
     "mainModules": {
       "client": "ui/main.jsx",
       "server": "api/main.js",
