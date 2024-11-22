@@ -40,7 +40,12 @@ export const insertTask = async function ({ text }) {
   checkUser(userId);
   const checked = false;
   const createdAt = new Date();
-  return await TasksCollection.insert({ text, userId, checked, createdAt });
+  return await TasksCollection.insertAsync({
+    text,
+    userId,
+    checked,
+    createdAt,
+  });
 };
 
 /**
@@ -54,7 +59,10 @@ export const insertTask = async function ({ text }) {
 export const checkTask = async function ({ _id, checked }) {
   const userId = this.userId;
   checkUser(userId);
-  return await TasksCollection.update({ _id, userId }, { $set: { checked } });
+  return await TasksCollection.updateAsync(
+    { _id, userId },
+    { $set: { checked } }
+  );
 };
 
 /**
@@ -67,5 +75,5 @@ export const checkTask = async function ({ _id, checked }) {
 export const removeTask = async function ({ _id }) {
   const userId = this.userId;
   checkUser(userId);
-  return await TasksCollection.remove({ _id, userId });
+  return await TasksCollection.removeAsync({ _id, userId });
 };
