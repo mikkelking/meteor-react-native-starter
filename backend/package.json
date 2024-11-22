@@ -2,24 +2,63 @@
   "name": "backend",
   "private": true,
   "scripts": {
-    "start": "meteor --settings=settings.json --port=8000",
+    "start": "meteor --exclude-archs web.browser.legacy,web.cordova --settings=settings.json --port=8000",
     "build:docs": "npx jsdoc -c ./jsdoc.conf.json",
     "lint": "standardx -v | snazzy",
     "lint:fix": "standardx --fix -v | snazzy",
     "test": "TEST_SERVER=1 TEST_CLIENT=0 meteor test --once --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519",
     "test:watch": "TEST_SERVER=1 TEST_CLIENT=0 meteor test --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519",
-    "test:coverage": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD TEST_SERVER=1 TEST_CLIENT=0 meteor test --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519"
+    "test:coverage": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD TEST_SERVER=1 TEST_CLIENT=0 meteor test --driver-package=meteortesting:mocha --exclude-archs 'web.browser, web.browser.legacy' --settings=settings.json --port=6519",
+        "visualize": "meteor --production --extra-packages bundle-visualizer"
+
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.7",
-    "meteor-node-stubs": "^1.2.7",
+    "@babel/runtime": "^7.24.8",
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@hookform/resolvers": "^2.9.11",
+    "@react-icons/all-files": "^4.1.0",
+    "bcrypt": "^5.1.1",
+    "framer-motion": "^6.5.1",
+    "history": "^5.3.0",
+    "meteor-node-stubs": "^1.2.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.52.1",
+    "react-router-dom": "^6.25.1",
+    "zod": "^3.23.8",
     "simpl-schema": "^3.4.1",
     "snazzy": "^9.0.0"
   },
-  "meteor": {
-    "testModule": "tests/main.js",
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/eslint-parser": "^7.23.3",
+    "babel-plugin-istanbul": "^6.1.1",
+    "@biomejs/biome": "1.8.3",
+    "@types/meteor": "^2.9.8",
+    "@types/mocha": "^9.1.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "chai": "^4.4.1",
+    "jsdoc": "^4.0.2",
+    "sinon": "^15.2.0",
+    "standardx": "^7.0.0"
+  },
+    "meteor": {
     "mainModules": {
-      "server": "server/main.js"
+      "client": "ui/main.jsx",
+      "server": "api/main.js",
+      "backend-server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "meteor npm test && lint-staged",
+      "post-commit": "git update-index --again"
     }
   },
   "babel": {
@@ -53,13 +92,14 @@
       ]
     }
   },
-  "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/eslint-parser": "^7.23.3",
-    "babel-plugin-istanbul": "^6.1.1",
-    "chai": "^4.3.10",
-    "jsdoc": "^4.0.2",
-    "sinon": "^15.2.0",
-    "standardx": "^7.0.0"
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "biome check --files-ignore-unknown=true",
+      "biome check --write --no-errors-on-unmatched",
+      "biome check --write --organize-imports-enabled=false --no-errors-on-unmatched",
+      "biome check --write --unsafe --no-errors-on-unmatched",
+      "biome format --write --no-errors-on-unmatched",
+      "biome lint --write --no-errors-on-unmatched"
+    ]
   }
 }
