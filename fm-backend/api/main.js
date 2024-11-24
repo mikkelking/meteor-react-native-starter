@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 
 import "./db/migrations";
 import "./connection";
+import "./accounts";
 import "./tasks/tasks.publications";
 import "./tasks/tasks.methods";
 

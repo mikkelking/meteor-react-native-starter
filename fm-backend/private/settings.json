@@ -18,5 +18,13 @@
       "ROOT_URL": "REPLACE_WITH_YOUR_DOMAIN",
       "MONGO_URL": "REPLACE_WITH_YOUR_MONGO_URL"
     }
+  },
+  "accounts": {
+    "config": {
+      "forbidClientAccountCreation": true,
+      "ambiguousErrorMessages": true,
+      "sendVerificationEmail": true,
+      "loginExpirationInDays": null
+    }
   }
 }

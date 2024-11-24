@@ -4,7 +4,7 @@
   "version": "1.0.3",
   "private": true,
   "scripts": {
-    "start": "meteor --exclude-archs web.browser.legacy,web.cordova --settings private/settings.json --port=8000",
+    "start": "meteor --exclude-archs web.browser.legacy,web.cordova --settings private/settings.json --port=8000 --inspect",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "check": "npx @biomejs/biome check --write ./**/*.{js,jsx}",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
